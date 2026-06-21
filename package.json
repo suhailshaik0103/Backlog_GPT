@@ -1,0 +1,14 @@
+{
+  "name": "backlog-gpt-local-prototype",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Local prototype for AI-powered product requirements and prioritization with RAG citations.",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

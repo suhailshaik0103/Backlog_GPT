@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Backlog GPT</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Local Prototype</p>
+        <h1>Backlog GPT</h1>
+      </div>
+      <div class="status" role="status" aria-live="polite">
+        <span id="mode">Loading</span>
+        <span id="chunkCount">0 chunks</span>
+      </div>
+    </header>
+
+    <main id="main" class="layout">
+      <section class="panel intake" aria-labelledby="source-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="source-heading">Source Evidence</h2>
+            <p>Paste interviews, meetings, PRDs, support notes, or research.</p>
+          </div>
+        </div>
+
+        <form id="sourceForm" class="stack">
+          <label>
+            Source title
+            <input id="sourceTitle" name="title" autocomplete="off" value="PM Review Notes">
+          </label>
+
+          <label>
+            Source type
+            <select id="sourceType" name="type">
+              <option value="interview">Interview</option>
+              <option value="meeting">Meeting transcript</option>
+              <option value="prd">PRD</option>
+              <option value="support">Support notes</option>
+              <option value="research">Research</option>
+            </select>
+          </label>
+
+          <label>
+            Evidence text
+            <textarea id="sourceText" name="text" rows="9">In the enterprise beta review, Sales said prospects will not accept AI-generated requirements unless each story shows the exact source note. Support reported that PMs spend hours converting calls into backlog items and often miss acceptance criteria. Engineering said long transcripts need to be chunked and summarized into decisions and actions before generation. Design wants clear stakeholder traceability for each requirement. The team agreed that the first prototype should ingest notes, retrieve evidence, generate prioritized requirements, and show confidence with citations.</textarea>
+          </label>
+
+          <button class="primary" type="submit">Add Source</button>
+        </form>
+
+        <div class="source-list" id="sources" aria-live="polite"></div>
+      </section>
+
+      <section class="panel workspace" aria-labelledby="generate-heading">
+        <div class="section-head">
+          <div>
+            <h2 id="generate-heading">Generate Backlog</h2>
+            <p>RAG retrieves relevant chunks, then the orchestrator creates requirements with citations.</p>
+          </div>
+          <button id="exportBtn" class="secondary" type="button" disabled>Export JSON</button>
+        </div>
+
+        <form id="generateForm" class="goal-row">
+          <label>
+            Product goal
+            <input id="productGoal" name="productGoal" value="Ship a trustworthy AI requirements agent for PM planning reviews">
+          </label>
+          <button class="primary" type="submit">Generate</button>
+        </form>
+
+        <div id="alert" class="alert" hidden role="alert"></div>
+
+        <div class="tabs" role="tablist" aria-label="Backlog views">
+          <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="requirements" data-tab="requirements">Requirements</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="traceability" data-tab="traceability">Traceability</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="evaluation" data-tab="evaluation">Evaluation</button>
+        </div>
+
+        <div id="requirements" class="tab-panel active" role="tabpanel"></div>
+        <div id="traceability" class="tab-panel" role="tabpanel" hidden></div>
+        <div id="evaluation" class="tab-panel" role="tabpanel" hidden></div>
+      </section>
+    </main>
+
+    <template id="sourceTemplate">
+      <article class="source-item">
+        <div>
+          <h3></h3>
+          <p></p>
+        </div>
+        <button type="button" class="icon-button" aria-label="Delete source">Delete</button>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
