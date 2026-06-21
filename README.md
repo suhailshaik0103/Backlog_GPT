@@ -39,3 +39,22 @@ The server calls the OpenAI Responses API with structured JSON output. If the AP
 ```bash
 npm test
 ```
+## Screenshots
+
+### Home
+![Home screen](home.png)
+
+### Source Input
+![Source input](source%20input.png)
+
+### Generated Requirement
+![Generated requirement](req2.png)
+
+### Additional Requirement
+![Additional requirement](req3.png)
+
+### Traceability
+![Traceability](traceability.png)
+
+### Evaluation
+![Evaluation](evaluation.png)
